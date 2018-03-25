@@ -87,6 +87,12 @@ export class CoreApiService {
             .catch(this.handleError);
     }
 
+    getGenericArray<T>(url: string, factory: Factory<T>): Observable<Array<T>> {
+        return this.http.get(url)
+            .map((res: Response) => this.extractGeneric<T>(res, factory))
+            .catch(this.handleError);
+    }
+
     post<T>(url: string, body: any, options?: RequestOptions): Observable<T> {
         return this.http.post(url, body, options ? options : this.getRequestOptions())
             .map(this.extractData)
