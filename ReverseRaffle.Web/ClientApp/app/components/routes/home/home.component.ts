@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { MarkdownService } from '../../../services/markdown.service';
 
 @Component({
     selector: 'home',
     templateUrl: 'home.component.html',
-    styleUrls: ['home.component.css'],
-    providers: [ MarkdownService ]
+    styleUrls: ['home.component.css']
 })
-export class HomeComponent {
-    constructor(public markdown: MarkdownService) { }
-}
+export class HomeComponent {}

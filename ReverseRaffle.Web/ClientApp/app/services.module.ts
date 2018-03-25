@@ -3,10 +3,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppService } from './services/app.service';
 import { CoreApiService } from './services/core-api.service';
-import { SidepanelService } from './services/sidepanel.service';
 import { SnackerService } from './services/snacker.service';
-import { ThemeService } from './services/theme.service';
-import { ShortcutService } from './services/shortcut.service';
 
 @NgModule({
   imports: [
@@ -15,10 +12,7 @@ import { ShortcutService } from './services/shortcut.service';
   providers: [
     AppService,
     CoreApiService,
-    SidepanelService,
-    SnackerService,
-    ThemeService,
-    ShortcutService
+    SnackerService
   ],
   exports: [
     HttpModule

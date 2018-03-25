@@ -15,10 +15,7 @@ const treeShakableModules = [
     '@angular/platform-browser',
     '@angular/platform-browser-dynamic',
     '@angular/router',
-    'd3',
     'hammerjs',
-    'prismjs',
-    'showdown',
     'zone.js',
 ];
 const nonTreeShakableModules = [
