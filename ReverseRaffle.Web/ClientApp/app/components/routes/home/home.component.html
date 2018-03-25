@@ -1,1 +1,9 @@
-<mat-toolbar>Start Building</mat-toolbar>
+<mat-toolbar>
+    <span>Raffles</span>
+    <button mat-button color="accent" (click)="addRaffle()">Add Raffle</button>
+</mat-toolbar>
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="raffleService.loading"></mat-progress-bar>
+<section *ngIf="raffleService.raffles.value.length > 0 && !(raffleService.loading)" fxLayout="row | wrap" fxLayoutAlign="start start" fxLayoutGap="8px" class="container">
+    <raffle-card *ngFor="let r of raffleService.raffles | async" [raffle]="r" (edit)="editRaffle($event)" (delete)="deleteRaffle($event)"></raffle-card>
+</section>
+<h3 *ngIf="!(raffleService.raffles.value.length > 0) && !(raffleService.loading)">No Pending Raffles</h3>

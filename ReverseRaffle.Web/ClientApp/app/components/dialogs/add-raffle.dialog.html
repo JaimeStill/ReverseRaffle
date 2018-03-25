@@ -1,0 +1,19 @@
+<div class="mat-typography">
+    <h2 mat-dialog-title>Add Raffle</h2>
+    <mat-dialog-content>
+        <section fxLayout="row | wrap" fxLayoutAlign="start center">
+            <mat-form-field fxFlex>
+                <input matInput placeholder="Title" [(ngModel)]="raffle.title">
+            </mat-form-field>
+            <mat-form-field fxFlex>
+                <input matInput [matDatepicker]="dp" [(ngModel)]="raffle.eventDate">
+                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                <mat-datepicker #dp></mat-datepicker>
+            </mat-form-field>
+        </section>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button color="primary" (click)="saveRaffle()">Save</button>
+        <button mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+</div>

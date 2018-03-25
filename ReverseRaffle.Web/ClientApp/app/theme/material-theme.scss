@@ -7,6 +7,8 @@ $yellow: mat-palette($mat-yellow, 700);
 $blue-color: map-get($blue, 600);
 $yellow-color: map-get($yellow, 700);
 $light-primary-text: rgba(white, 0.87);
+$grey-800: map-get($mat-grey, 800);
+$grey-700: map-get($mat-grey, 700);
 
 /*-- Global Styling --*/
 $default-theme: mat-dark-theme($blue, $yellow);
@@ -26,6 +28,20 @@ html, body, app, .app-frame {
     color: $light-primary-text;
 }
 
+.app-body h1,
+.app-body h2,
+.app-body h3,
+.app-body h4,
+.app-body h5,
+.app-body h6,
+.app-body p {
+    margin: 10px;
+}
+
+.app-body .container {
+    padding: 8px;
+}
+
 code.snippet,
 a.link,
 .active.active div.mat-list-item-content {
@@ -34,4 +50,18 @@ a.link,
 
 a.link:visited {
     color: $yellow-color;
+}
+
+.contrast {
+    background-color: $grey-800;
+}
+
+.contrast-stacked {
+    background-color: $grey-700;
+}
+
+mat-toolbar.mat-toolbar a,
+mat-toolbar.mat-toolbar a:visited {
+    text-decoration: none;
+    color: $light-primary-text;
 }

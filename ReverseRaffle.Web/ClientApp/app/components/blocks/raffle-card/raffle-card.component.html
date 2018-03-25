@@ -1,0 +1,17 @@
+<section *ngIf="raffle" fxLayout="row" fxLayoutAlign="start center" class="raffle-card contrast mat-elevation-z5">
+    <p fxFlex>{{raffle.title}}</p>
+    <p>{{raffle.eventDate | date:'dd MMM yyyy'}}</p>
+    <button mat-icon-button color="accent" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item color="primary" (click)="edit.emit(raffle)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+        </button>
+        <button mat-menu-item color="warn" (click)="delete.emit(raffle)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+        </button>
+    </mat-menu>
+</section>

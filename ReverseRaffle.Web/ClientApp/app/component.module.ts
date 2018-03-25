@@ -7,8 +7,10 @@ import { PipeModule } from './pipe.module';
 
 // Dialogs
 import { ConfirmDialog } from './components/dialogs/confirm.dialog';
+import { AddRaffleDialog } from './components/dialogs/add-raffle.dialog';
 
 // Blocks
+import { RaffleCardComponent } from './components/blocks/raffle-card/raffle-card.component';
 
 // Layouts
 import { SearchContainerComponent } from './components/layouts/search-container/search-container.component';
@@ -22,18 +24,31 @@ import { SearchContainerComponent } from './components/layouts/search-container/
         RouterModule
     ],
     declarations: [
+        // Dialogs
         ConfirmDialog,
+        AddRaffleDialog,
+        // Blocks
+        RaffleCardComponent,
+        // Layouts
         SearchContainerComponent
     ],
     entryComponents: [
-        ConfirmDialog
+        ConfirmDialog,
+        AddRaffleDialog
     ],
     exports: [
+        // Modules
         CommonModule,
         FormsModule,
         MaterialModule,
+        // Pipes
         PipeModule,
+        // Dialogs
         ConfirmDialog,
+        AddRaffleDialog,
+        // Blocks
+        RaffleCardComponent,
+        // Layouts
         SearchContainerComponent
     ]
 })

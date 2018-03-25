@@ -8,6 +8,7 @@ import { Factory } from '../../models/core/factory';
 
 const raffleFactory = new Factory(Raffle);
 
+@Injectable()
 export class RaffleService {
     raffles = new BehaviorSubject<Raffle[]>([]);
     completedRaffles = new BehaviorSubject<Raffle[]>([]);
@@ -92,7 +93,7 @@ export class RaffleService {
     }
 
     deleteRaffle(raffle: Raffle) {
-        this.coreApi.post('/api/raffle/deleteRaffle', JSON.stringify(raffle))
+        this.coreApi.post('/api/raffle/deleteRaffle', JSON.stringify(raffle.id))
             .subscribe(
                 () => {
                     this.getRaffles();
