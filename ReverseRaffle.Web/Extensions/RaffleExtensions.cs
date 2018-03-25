@@ -76,6 +76,9 @@ namespace ReverseRaffle.Web.Extensions
             if (model.Validate())
             {
                 var raffle = await db.Raffles.FindAsync(model.id);
+                raffle.Title = model.title;
+                raffle.EventDate = model.eventDate;
+                await db.SaveChangesAsync();
             }
         }
 

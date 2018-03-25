@@ -7,10 +7,12 @@ import { PipeModule } from './pipe.module';
 import { ComponentModule } from './component.module';
 
 import { HomeComponent } from './components/routes/home/home.component';
+import { ManageRaffleComponent } from './components/routes/manage-raffle/manage-raffle.component';
 
 const routes: Route[] = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+    { path: 'manage-raffle/:id', component: ManageRaffleComponent },
     { path: '**', redirectTo: 'home' }
 ]
 
@@ -24,10 +26,12 @@ const routes: Route[] = [
         RouterModule.forRoot(routes)
     ],
     declarations: [
-        HomeComponent
+        HomeComponent,
+        ManageRaffleComponent
     ],
     exports: [
         HomeComponent,
+        ManageRaffleComponent,
         MaterialModule,
         PipeModule,
         ComponentModule,

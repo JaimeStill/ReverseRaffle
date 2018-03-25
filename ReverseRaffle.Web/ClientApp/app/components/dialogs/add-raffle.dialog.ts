@@ -5,8 +5,7 @@ import { Raffle } from '../../models/app/raffle';
 
 @Component({
     selector: 'add-raffle',
-    templateUrl: 'add-raffle.dialog.html',
-    styleUrls: ['add-raffle.dialog.css']
+    templateUrl: 'add-raffle.dialog.html'
 })
 export class AddRaffleDialog {
     raffle = new Raffle();

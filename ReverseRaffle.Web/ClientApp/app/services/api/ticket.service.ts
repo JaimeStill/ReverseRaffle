@@ -1,11 +1,49 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CoreApiService } from '../core-api.service';
 import { SnackerService } from '../snacker.service';
 import { Ticket } from '../../models/app/ticket';
 import { Factory } from '../../models/core/factory';
+import { Raffle } from '../../models/app/raffle';
 
 const ticketFactory = new Factory(Ticket);
+
+const testFirstNames = [
+    "James",
+    "John",
+    "Robert",
+    "Michael",
+    "William",
+    "David",
+    "Richard",
+    "Joseph",
+    "Thomas",
+    "Charles",
+    "Mary",
+    "Patricia",
+    "Jennifer",
+    "Elizabeth",
+    "Linda",
+    "Barbara",
+    "Susan",
+    "Jessica",
+    "Margaret",
+    "Sarah"
+];
+
+const testLastNames = [
+    "Smith",
+    "Johnson",
+    "Williams",
+    "Jones",
+    "Brown",
+    "Davis",
+    "Miller",
+    "Wilson",
+    "Moore",
+    "Taylor"
+];
 
 @Injectable()
 export class TicketService {
@@ -25,7 +63,7 @@ export class TicketService {
     getTickets(raffleId: number) {
         this.loading = true;
         this.coreApi
-            .getGenericArray<Ticket>('/api/ticket/getTickets', ticketFactory)
+            .getGenericArray<Ticket>('/api/ticket/getTickets/' + raffleId, ticketFactory)
             .subscribe(
                 data => {
                     this.loading = false;
@@ -41,7 +79,7 @@ export class TicketService {
     getIndexTickets(raffleId: number) {
         this.loadingIndex = true;
         this.coreApi
-            .getGenericArray<Ticket>('/api/ticket/getIndexTickets', ticketFactory)
+            .getGenericArray<Ticket>('/api/ticket/getIndexTickets/' + raffleId, ticketFactory)
             .subscribe(
                 data => {
                     this.loadingIndex = false;
@@ -57,7 +95,7 @@ export class TicketService {
     getWinningTickets(raffleId: number) {
         this.loadingWinning = true;
         this.coreApi
-            .getGenericArray<Ticket>('/api/ticket/getWinningTickets', ticketFactory)
+            .getGenericArray<Ticket>('/api/ticket/getWinningTickets/' + raffleId, ticketFactory)
             .subscribe(
                 data => {
                     this.loadingWinning = false;
@@ -70,15 +108,8 @@ export class TicketService {
             );
     }
 
-    addTicket(ticket: Ticket) {
-        this.coreApi.post('/api/ticket/addTicket', JSON.stringify(ticket))
-            .subscribe(
-                () => {
-                    this.getTickets(ticket.raffle.id);
-                    this.snacker.sendSuccessMessage(`Ticket # ${ticket.ticketNumber} assigned to ${ticket.name}`);
-                },
-                err => this.snacker.sendErrorMessage(err)
-            );
+    addTicket(ticket: Ticket): Observable<{}> {
+        return this.coreApi.post('/api/ticket/addTicket', JSON.stringify(ticket));
     }
 
     updateTicket(ticket: Ticket) {
@@ -120,5 +151,21 @@ export class TicketService {
                 },
                 err => this.snacker.sendErrorMessage(err)
             );
+    }
+
+    generateRandomTickets(raffleId: number) {
+        for (let i = 1; i < 251; i++) {
+            let ticket = new Ticket();
+            ticket.ticketNumber = i;
+            ticket.name = `${testFirstNames[Math.floor(Math.random() * 20)]} ${testLastNames[Math.floor(Math.random() * 10)]}`;
+            ticket.raffle = new Raffle();
+            ticket.raffle.id = raffleId;
+            this.addTicket(ticket).subscribe(
+                () => this.snacker.sendSuccessMessage(`${ticket.ticketNumber} added`),
+                err => this.snacker.sendErrorMessage(err)
+            );
+        }
+
+        this.getTickets(raffleId);
     }
 }

@@ -1,0 +1,28 @@
+<mat-toolbar>
+    <span>Manage Raffle</span>
+    <button mat-button color="accent" (click)="raffleService.updateRaffle(raffle)" [disabled]="raffleService.loadingRaffle">Save</button>
+</mat-toolbar>
+<mat-progress-bar *ngIf="raffleService.loadingRaffle" mode="indeterminate" color="accent"></mat-progress-bar>
+<section class="container" fxLayout="row" fxLayoutAlign="start center" *ngIf="!(raffleService.loadingRaffle)">
+    <mat-form-field>
+        <input matInput placeholder="Title" [(ngModel)]="raffle.title">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput placeholder="Event Date" [matDatepicker]="dp" [(ngModel)]="raffle.eventDate">
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
+    </mat-form-field>
+</section>
+<mat-toolbar>
+    <span>Raffle Tickets</span>
+    <button mat-button color="accent" (click)="addTicket()" [disabled]="ticketService.loading || ticketService.tickets.value.length > 249">Add Ticket</button>
+    <button mat-button color="primary" (click)="generateTickets()" [disabled]="ticketService.tickets.value.length > 0 || ticketService.loading">Generate Tickets</button>
+</mat-toolbar>
+<mat-progress-bar *ngIf="ticketService.loading" mode="indeterminate" color="accent"></mat-progress-bar>
+<section class="container" *ngIf="!(ticketService.loading) && ticketService.tickets.value.length > 0">
+    <h3>{{ticketService.tickets.value.length}}/250 Tickets Assigned</h3>
+    <section fxLayout="row | wrap" fxLayoutAlign="start start" fxLayoutGap="8px">
+        <ticket-card *ngFor="let t of ticketService.tickets | async" [ticket]="t" (edit)="editTicket($event)" (delete)="deleteTicket($event)"></ticket-card>
+    </section>
+</section>
+<h3 *ngIf="!(ticketService.loading) && !(ticketService.tickets.value.length > 0)">No Tickets Yet Assigned</h3>

@@ -8,9 +8,11 @@ import { PipeModule } from './pipe.module';
 // Dialogs
 import { ConfirmDialog } from './components/dialogs/confirm.dialog';
 import { AddRaffleDialog } from './components/dialogs/add-raffle.dialog';
+import { AddTicketDialog } from './components/dialogs/add-ticket.dialog';
 
 // Blocks
 import { RaffleCardComponent } from './components/blocks/raffle-card/raffle-card.component';
+import { TicketCardComponent } from './components/blocks/ticket-card/ticket-card.component';
 
 // Layouts
 import { SearchContainerComponent } from './components/layouts/search-container/search-container.component';
@@ -27,14 +29,17 @@ import { SearchContainerComponent } from './components/layouts/search-container/
         // Dialogs
         ConfirmDialog,
         AddRaffleDialog,
+        AddTicketDialog,
         // Blocks
         RaffleCardComponent,
+        TicketCardComponent,
         // Layouts
         SearchContainerComponent
     ],
     entryComponents: [
         ConfirmDialog,
-        AddRaffleDialog
+        AddRaffleDialog,
+        AddTicketDialog
     ],
     exports: [
         // Modules
@@ -46,8 +51,10 @@ import { SearchContainerComponent } from './components/layouts/search-container/
         // Dialogs
         ConfirmDialog,
         AddRaffleDialog,
+        AddTicketDialog,
         // Blocks
         RaffleCardComponent,
+        TicketCardComponent,
         // Layouts
         SearchContainerComponent
     ]

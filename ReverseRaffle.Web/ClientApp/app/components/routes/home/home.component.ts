@@ -9,7 +9,6 @@ import { AddRaffleDialog } from '../../dialogs/add-raffle.dialog';
 @Component({
     selector: 'home',
     templateUrl: 'home.component.html',
-    styleUrls: ['home.component.css'],
     providers: [ RaffleService ]
 })
 export class HomeComponent implements OnInit {

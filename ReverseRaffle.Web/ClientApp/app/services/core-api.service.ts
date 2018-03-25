@@ -27,10 +27,14 @@ export class CoreApiService {
     }
 
     extractGeneric<T>(res: Response, factory: Factory<T>) {
+        return Object.assign(factory.create(), res.json());
+    }
+
+    extractGenericArray<T>(res: Response, factory: Factory<T>) {
         return res.json().map((obj: T) => {
             return Object.assign(factory.create(), obj);
         });
-    }    
+    }
 
     handleError(error: Response | any) {
         let errMsg: string;
@@ -89,7 +93,7 @@ export class CoreApiService {
 
     getGenericArray<T>(url: string, factory: Factory<T>): Observable<Array<T>> {
         return this.http.get(url)
-            .map((res: Response) => this.extractGeneric<T>(res, factory))
+            .map((res: Response) => this.extractGenericArray<T>(res, factory))
             .catch(this.handleError);
     }
 

@@ -1,0 +1,12 @@
+.ticket-card {
+    width: 420px;
+    padding: 4px 8px;
+}
+
+.number-input {
+    width: 32px;
+}
+
+.ticket-card mat-form-field.mat-form-field {
+    margin: 0 8px;
+}

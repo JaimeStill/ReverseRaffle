@@ -1,0 +1,10 @@
+<section *ngIf="ticket" fxLayout="row" fxLayoutAlign="start center" class="ticket-card contrast mat-elevation-z5">
+    <mat-form-field class="number-input">
+        <input matInput [(ngModel)]="ticket.ticketNumber">
+    </mat-form-field>
+    <mat-form-field fxFlex>
+        <input matInput [(ngModel)]="ticket.name">
+    </mat-form-field>
+    <button mat-icon-button color="primary" (click)="edit.emit(ticket)" matTooltip="edit"><mat-icon>edit</mat-icon></button>
+    <button mat-icon-button color="warn" (click)="delete.emit(ticket)" matTooltip="delete"><mat-icon>delete</mat-icon></button>
+</section>

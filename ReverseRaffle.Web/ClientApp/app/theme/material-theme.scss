@@ -26,6 +26,7 @@ html, body, app, .app-frame {
     overflow: auto;
     height: 100%;
     color: $light-primary-text;
+    padding-bottom: 64px;
 }
 
 .app-body h1,
@@ -38,8 +39,21 @@ html, body, app, .app-frame {
     margin: 10px;
 }
 
+mat-toolbar.mat-toolbar span,
+mat-toolbar.mat-toolbar button {
+    margin-right: 15px;
+}
+
+mat-form-field.mat-form-field {
+    margin: 10px;
+}
+
 .app-body .container {
     padding: 8px;
+}
+
+[class*="-card"] {
+    margin-bottom: 8px;
 }
 
 code.snippet,
