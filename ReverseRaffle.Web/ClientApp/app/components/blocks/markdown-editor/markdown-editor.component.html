@@ -1,0 +1,15 @@
+<section fxLayout="column" fxLayoutAlign="start stretch">
+    <markdown-toolbar *ngIf="config.showToolbar" [editor]="editor" [markdown]="markdown"></markdown-toolbar>
+    <mat-form-field fxFlex floatLabel="never" class="editor-field">
+        <textarea class="editor"
+            #editor
+            matInput
+            [placeholder]="config.placeholder"
+            matTextareaAutosize
+            [matAutosizeMinRows]="minRows"
+            [matAutosizeMaxRows]="maxRows"
+            [style.font-family]="config.font"
+            [style.font-size.px]="config.fontSize"
+            (keydown)="shortcut.checkShortcut($event)"></textarea>
+    </mat-form-field>
+</section>

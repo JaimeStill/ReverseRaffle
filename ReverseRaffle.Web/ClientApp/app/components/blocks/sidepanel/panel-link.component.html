@@ -1,0 +1,6 @@
+<a mat-list-item [routerLink]="link" routerLinkActive="active" [@slide]="state">
+    <mat-icon [matTooltip]="label" 
+              [matTooltipPosition]="tooltipPosition" 
+              [matTooltipDisabled]="state !== 'thin'">{{icon}}</mat-icon>
+      <span [@reveal]="state">{{label}}</span>
+  </a>

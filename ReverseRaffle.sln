@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReverseRaffle.Web", "ReverseRaffle.Web\ReverseRaffle.Web.csproj", "{B795A8F8-745A-4841-B1DB-152793EDC46C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B795A8F8-745A-4841-B1DB-152793EDC46C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B795A8F8-745A-4841-B1DB-152793EDC46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B795A8F8-745A-4841-B1DB-152793EDC46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B795A8F8-745A-4841-B1DB-152793EDC46C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5EA21580-4F96-4CCF-8666-4E6F7A720EA9}
+	EndGlobalSection
+EndGlobal

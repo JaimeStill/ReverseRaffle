@@ -1,0 +1,15 @@
+.api-card {
+    padding: 8px;
+}
+
+.property-card {
+    margin: 4px;
+    padding: 8px;
+}
+
+.panel-container p,
+.panel-container h2,
+.panel-container h3,
+.panel-conatiner h4 {
+    margin: 8px;
+}

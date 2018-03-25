@@ -1,0 +1,8 @@
+<section fxLayout="row" fxLayout.lt-md="column">
+    <mat-form-field floatLabel="never" fxFlex>
+        <input matInput #filter placeholder="Filter">
+    </mat-form-field>
+    <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="25" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</section>
+<mat-progress-bar *ngIf="service.loading" color="accent" mode="indeterminate"></mat-progress-bar>
+<ng-content></ng-content>

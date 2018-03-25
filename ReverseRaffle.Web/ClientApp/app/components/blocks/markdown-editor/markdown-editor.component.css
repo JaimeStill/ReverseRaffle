@@ -1,0 +1,7 @@
+textarea.editor {
+    box-sizing: border-box;
+}
+
+mat-form-field.mat-form-field.editor-field {
+    margin: 8px;
+}

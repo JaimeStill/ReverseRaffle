@@ -1,0 +1,13 @@
+.preview-container {
+    padding: 8px;
+}
+
+:host .preview-container ::ng-deep blockquote {
+    border-left: 3px solid #ccc;
+    padding-left: 8px;
+    margin-left: 2em;
+}
+
+:host .preview-container ::ng-deep pre{
+    padding: 8px;
+}

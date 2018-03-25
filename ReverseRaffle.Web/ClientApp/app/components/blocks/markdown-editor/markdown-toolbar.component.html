@@ -1,0 +1,83 @@
+<mat-accordion displayMode="flat" [multi]="true">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Toolbar</mat-panel-title>
+            <mat-panel-description>Markdown Editor Commands</mat-panel-description>
+        </mat-expansion-panel-header>
+        <section fxLayout="row | wrap" fxLayoutAlign="start start">
+            <section class="toolbar-group" fxLayout="row" fxLayoutAlign="start center">
+                <button mat-button color="accent" (click)="addHeader('#')" matTooltip="Header 1">H1</button>
+                <button mat-button color="accent" (click)="addHeader('##')" matTooltip="Header 2">H2</button>
+                <button mat-button color="accent" (click)="addHeader('###')" matTooltip="Header 3">H3</button>
+                <button mat-button color="accent" (click)="addHeader('####')" matTooltip="Header 4">H4</button>
+                <button mat-button color="accent" (click)="addHeader('#####')" matTooltip="Header 5">H5</button>
+                <button mat-button color="accent" (click)="addHeader('######')" matTooltip="Header 6">H6</button>
+            </section>
+            <section class="toolbar-group" fxLayout="row" fxLayoutAlign="start center">
+                <button mat-icon-button color="accent" (click)="addBold()" matTooltip="Bold">
+                    <mat-icon>format_bold</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" (click)="addItalic()" matTooltip="Italic">
+                    <mat-icon>format_italic</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" (click)="addCodeSnippet()" matTooltip="Code">
+                    <mat-icon>code</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" (click)="addQuote()" matTooltip="Quote">
+                    <mat-icon>format_quote</mat-icon>
+                </button>
+            </section>
+            <section class="toolbar-group" fxLayout="row" fxLayoutAlign="start center">
+                <button mat-icon-button color="accent" (click)="addUL()" matTooltip="Unordered List">
+                    <mat-icon>format_list_bulleted</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" (click)="addOL()" matTooltip="Ordered List">
+                    <mat-icon>format_list_numbered</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" (click)="addIncompleteTask()" matTooltip="Incomplete Task">
+                    <mat-icon>check_box_outline_blank</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" (click)="addCompletedTask()" matTooltip="Completed Task">
+                    <mat-icon>check_box</mat-icon>
+                </button>
+            </section>
+            <section class="toolbar-group" fxLayout="row" fxLayoutAlign="start center">
+                <button mat-icon-button color="accent" (click)="addHR()" matTooltip="Horizontal Rule">
+                    <mat-icon>drag_handle</mat-icon>
+                </button>
+            </section>
+            <section class="toolbar-group" fxLayout="row" fxLayoutAlign="start center">
+                <button mat-icon-button color="accent" (click)="addImage()" matTooltip="Image">
+                    <mat-icon>insert_photo</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" (click)="addLink()" matTooltip="Link">
+                    <mat-icon>insert_link</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" (click)="addCodeBlock()" matTooltip="Code Block">
+                    <mat-icon>developer_board</mat-icon>
+                </button>
+                <button mat-icon-button color="accent" (click)="addTable()" matTooltip="Table">
+                    <mat-icon>border_all</mat-icon>
+                </button>
+            </section>
+        </section>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Editor</mat-panel-title>
+            <mat-panel-description>Font Settings for Markdown Editor</mat-panel-description>
+        </mat-expansion-panel-header>
+        <section class="toolbar-group" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px">
+            <mat-form-field hintLabel="Font" class="toolbar-field">
+                <mat-select (selectionChange)="setFont($event)" [value]="config.font">
+                    <mat-option *ngFor="let f of fonts" [value]="f">{{f}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field hintLabel="Font Size" class="toolbar-field">
+                <mat-select (selectionChange)="setFontSize($event)" [value]="config.fontSize">
+                    <mat-option *ngFor="let f of fontSizes" [value]="f">{{f}}px</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </section>
+    </mat-expansion-panel>
+</mat-accordion>
