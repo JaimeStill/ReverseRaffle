@@ -1,6 +1,8 @@
 <section *ngIf="raffle" fxLayout="row" fxLayoutAlign="start center" class="raffle-card contrast mat-elevation-z5">
-    <p fxFlex>{{raffle.title}}</p>
-    <p>{{raffle.eventDate | date:'dd MMM yyyy'}}</p>
+    <section fxLayout="row" fxLayoutAlign="start center" fxFlex class="raffle-link" (click)="openRaffle()">
+        <p fxFlex>{{raffle.title}}</p>
+        <p>{{raffle.eventDate | date:'dd MMM yyyy'}}</p>
+    </section>
     <button mat-icon-button color="accent" [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
     </button>

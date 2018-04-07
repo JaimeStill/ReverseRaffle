@@ -1,0 +1,21 @@
+<section *ngIf="raffle?.id > 0">
+    <mat-toolbar>
+        <span>{{raffle.title}}</span>
+        <mat-form-field floatLabel="never">
+            <input [disabled]="raffleComplete" matInput placeholder="Ticket #" #input (keydown.enter)="addTicketIndex(input)">
+        </mat-form-field>
+        <button mat-icon-button (click)="showLogs()" color="accent" matTooltip="Logs">
+            <mat-icon>assignment</mat-icon>
+        </button>
+        <button mat-button color="primary" (click)="raffleService.toggleRaffleComplete(raffle)" *ngIf="raffleComplete">
+            <span *ngIf="raffle.isComplete">Mark Incomplete</span>
+            <span *ngIf="!(raffle.isComplete)">Mark Complete</span>
+        </button>
+        <button mat-button color="primary" (click)="showWinners()" *ngIf="raffleComplete">Show Winners</button>
+    </mat-toolbar>
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="ticketService.loadingIndex"></mat-progress-bar>
+    <section fxLayout="row | wrap" fxLayoutAlign="start start" fxLayoutGap="6px" *ngIf="ticketService.indexTickets.length > 0">
+        <ticket class="mat-elevation-z5" *ngFor="let t of ticketService.indexTickets" [ticket]="t" (remove)="removeTicket(t)" [@appear]="'in'"></ticket>
+    </section>
+</section>
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="raffleService.loadingRaffle"></mat-progress-bar>

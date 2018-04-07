@@ -12,7 +12,7 @@ export class CoreApiService {
 
     extractData(res: Response) {
         try {
-            return res.json() || {};
+            return res.json();
         } catch (error) {
             return res;
         }

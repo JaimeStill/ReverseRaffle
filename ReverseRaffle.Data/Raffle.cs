@@ -9,6 +9,7 @@ namespace ReverseRaffle.Data
         public string Title { get; set; }
         public DateTime EventDate { get; set; }
         public bool IsComplete { get; set; }
-        public List<Ticket> Tickets{ get; set; }
+        public List<Ticket> Tickets { get; set; }
+        public List<Log> Logs { get; set; }
     }
 }

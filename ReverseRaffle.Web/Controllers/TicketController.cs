@@ -63,9 +63,6 @@ namespace ReverseRaffle.Web.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task RemoveTicketIndex([FromRoute]TicketModel model)
-        {
-            await db.RemoveTicketIndex(model);
-        }
+        public async Task RemoveTicketIndex([FromBody]TicketModel model) => await db.RemoveTicketIndex(model);
     }
 }

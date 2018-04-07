@@ -70,9 +70,11 @@ export class RaffleService {
     }
 
     checkRaffleComplete(id: number) {
-        this.coreApi.get<boolean>('/api/raffle/checkRaffleComplete/id')
+        this.coreApi.get<boolean>('/api/raffle/checkRaffleComplete/' + id)
             .subscribe(
-                data => this.raffleComplete.next(data),
+                data => {
+                    this.raffleComplete.next(data);
+                },
                 err => this.snacker.sendErrorMessage(err)
             );
     }
@@ -98,6 +100,20 @@ export class RaffleService {
                 () => {
                     this.getRaffles();
                     this.snacker.sendSuccessMessage(`${raffle.title} successfully deleted`);
+                },
+                err => this.snacker.sendErrorMessage(err)
+            );
+    }
+
+    toggleRaffleComplete(raffle: Raffle) {
+        this.coreApi.post('/api/raffle/toggleRaffleComplete', JSON.stringify(raffle.id))
+            .subscribe(
+                () => {
+                    this.getRaffle(raffle.id);
+
+                    raffle.isComplete ? 
+                        this.snacker.sendSuccessMessage(`${raffle.title} marked incomplete`) :
+                        this.snacker.sendSuccessMessage(`${raffle.title} marked complete`);
                 },
                 err => this.snacker.sendErrorMessage(err)
             );

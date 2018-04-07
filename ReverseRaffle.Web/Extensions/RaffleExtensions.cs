@@ -49,7 +49,7 @@ namespace ReverseRaffle.Web.Extensions
         public static async Task<bool> CheckRaffleComplete(this AppDbContext db, int id)
         {
             var tickets = await db.Tickets.Where(x => x.RaffleId == id).ToListAsync();
-            return tickets.Select(x => x.Index).Contains(0);
+            return tickets.Select(x => x.Index).Contains(0) ? false : true;
         }
 
         public static async Task<int> AddRaffle(this AppDbContext db, RaffleModel model)
@@ -86,6 +86,13 @@ namespace ReverseRaffle.Web.Extensions
         {
             var raffle = await db.Raffles.FindAsync(id);
             db.Raffles.Remove(raffle);
+            await db.SaveChangesAsync();
+        }
+
+        public static async Task ToggleRaffleComplete(this AppDbContext db, int id)
+        {
+            var raffle = await db.Raffles.FindAsync(id);
+            raffle.IsComplete = !raffle.IsComplete;
             await db.SaveChangesAsync();
         }
 

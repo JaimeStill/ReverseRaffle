@@ -2,8 +2,21 @@
     <span>Raffles</span>
     <button mat-button color="accent" (click)="addRaffle()">Add Raffle</button>
 </mat-toolbar>
-<mat-progress-bar mode="indeterminate" color="accent" *ngIf="raffleService.loading"></mat-progress-bar>
-<section *ngIf="raffleService.raffles.value.length > 0 && !(raffleService.loading)" fxLayout="row | wrap" fxLayoutAlign="start start" fxLayoutGap="8px" class="container">
-    <raffle-card *ngFor="let r of raffleService.raffles | async" [raffle]="r" (edit)="editRaffle($event)" (delete)="deleteRaffle($event)"></raffle-card>
-</section>
-<h3 *ngIf="!(raffleService.raffles.value.length > 0) && !(raffleService.loading)">No Pending Raffles</h3>
+<mat-tab-group>
+    <mat-tab label="Pending">
+        <mat-progress-bar mode="indeterminate" color="accent" *ngIf="raffleService.loading"></mat-progress-bar>
+        <section *ngIf="raffleService.raffles.value?.length > 0 && !(raffleService.loading)" fxLayout="row | wrap" fxLayoutAlign="start start"
+            fxLayoutGap="8px" class="container">
+            <raffle-card *ngFor="let r of raffleService.raffles | async" [raffle]="r" (edit)="editRaffle($event)" (delete)="deleteRaffle($event)"></raffle-card>
+        </section>
+        <h3 *ngIf="!(raffleService.raffles.value.length > 0) && !(raffleService.loading)">No Pending Raffles</h3>
+    </mat-tab>
+    <mat-tab label="Complete">
+        <mat-progress-bar mode="indeterminate" color="accent" *ngIf="raffleService.loadingCompleted"></mat-progress-bar>
+        <section *ngIf="raffleService.completedRaffles.value?.length > 0 && !(raffleService.loadingCompleted)" fxLayout="row | wrap" fxLayoutAlign="start start"
+            fxLayoutGap="8px" class="container">
+            <raffle-card *ngFor="let r of raffleService.completedRaffles | async" [raffle]="r" (edit)="editRaffle($event)" (delete)="deleteRaffle($event)"></raffle-card>
+        </section>
+        <h3 *ngIf="!(raffleService.completedRaffles.value?.length > 0) && !(raffleService.loadingCompleted)">No Completed Raffles</h3>
+    </mat-tab>
+</mat-tab-group>

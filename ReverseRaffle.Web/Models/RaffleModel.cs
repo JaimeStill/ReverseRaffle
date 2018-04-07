@@ -12,5 +12,6 @@ namespace ReverseRaffle.Web.Models
         public DateTime eventDate { get; set; }
         public bool isComplete { get; set; }
         public List<TicketModel> tickets { get; set; }
+        public List<LogModel> logs { get; set; }
     }
 }

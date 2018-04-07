@@ -1,0 +1,16 @@
+<div class="mat-typography">
+    <h2 mat-dialog-title>Raffle Ticket Logs</h2>
+    <mat-dialog-content>
+        <mat-progress-bar *ngIf="service.loading" mode="indeterminate" color="accent"></mat-progress-bar>
+        <section *ngIf="logs?.length > 0" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="6px">
+            <section *ngFor="let log of logs" class="log-card contrast-stacked mat-elevation-z5" fxLayout="row" fxLayoutAlign="start center">
+                <span fxFlex>{{log.input}}</span>
+                <button mat-icon-button color="warn" (click)="removeLog(log)"><mat-icon>delete</mat-icon></button>
+            </section>
+        </section>
+        <h3 *ngIf="!(service.loading) && !(logs?.length > 0)">No Logs Available</h3>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</div>

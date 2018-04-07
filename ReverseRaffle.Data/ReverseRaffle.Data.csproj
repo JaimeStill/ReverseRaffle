@@ -123,9 +123,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDbContext.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Migrations\20180325103337_initial.cs" />
     <Compile Include="Migrations\20180325103337_initial.designer.cs">
       <DependentUpon>20180325103337_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20180407152826_raffle-log.cs" />
+    <Compile Include="Migrations\20180407152826_raffle-log.designer.cs">
+      <DependentUpon>20180407152826_raffle-log.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AppDbContextModelSnapshot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

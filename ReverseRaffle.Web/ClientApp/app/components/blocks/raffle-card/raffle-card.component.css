@@ -1,3 +1,7 @@
 .raffle-card {
     width: 320px;
 }
+
+.raffle-link {
+    cursor: pointer;
+}

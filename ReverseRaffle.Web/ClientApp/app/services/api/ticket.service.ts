@@ -58,21 +58,21 @@ export class TicketService {
     constructor(
         public coreApi: CoreApiService,
         public snacker: SnackerService
-    ) {}
+    ) { }
 
     getTickets(raffleId: number) {
         this.loading = true;
         this.coreApi
             .getGenericArray<Ticket>('/api/ticket/getTickets/' + raffleId, ticketFactory)
             .subscribe(
-                data => {
-                    this.loading = false;
-                    this.tickets.next(data);
-                },
-                err => {
-                    this.loading = false;
-                    this.snacker.sendErrorMessage(err);
-                }
+            data => {
+                this.loading = false;
+                this.tickets.next(data);
+            },
+            err => {
+                this.loading = false;
+                this.snacker.sendErrorMessage(err);
+            }
             );
     }
 
@@ -81,14 +81,14 @@ export class TicketService {
         this.coreApi
             .getGenericArray<Ticket>('/api/ticket/getIndexTickets/' + raffleId, ticketFactory)
             .subscribe(
-                data => {
-                    this.loadingIndex = false;
-                    this.indexTickets = data;
-                },
-                err => {
-                    this.loadingIndex = false;
-                    this.snacker.sendErrorMessage(err);
-                }
+            data => {
+                this.loadingIndex = false;
+                this.indexTickets = data;
+            },
+            err => {
+                this.loadingIndex = false;
+                this.snacker.sendErrorMessage(err);
+            }
             );
     }
 
@@ -97,14 +97,14 @@ export class TicketService {
         this.coreApi
             .getGenericArray<Ticket>('/api/ticket/getWinningTickets/' + raffleId, ticketFactory)
             .subscribe(
-                data => {
-                    this.loadingWinning = false;
-                    this.winningTickets.next(data);
-                },
-                err => {
-                    this.loadingIndex = false;
-                    this.snacker.sendErrorMessage(err);
-                }
+            data => {
+                this.loadingWinning = false;
+                this.winningTickets.next(data);
+            },
+            err => {
+                this.loadingIndex = false;
+                this.snacker.sendErrorMessage(err);
+            }
             );
     }
 
@@ -115,42 +115,54 @@ export class TicketService {
     updateTicket(ticket: Ticket) {
         this.coreApi.post('/api/ticket/updateTicket', JSON.stringify(ticket))
             .subscribe(
-                () => {
-                    this.getTickets(ticket.raffle.id);
-                    this.snacker.sendSuccessMessage(`Ticket # ${ticket.ticketNumber} assigned to ${ticket.name}`);
-                },
-                err => this.snacker.sendErrorMessage(err)
+            () => {
+                this.getTickets(ticket.raffle.id);
+                this.snacker.sendSuccessMessage(`Ticket # ${ticket.ticketNumber} assigned to ${ticket.name}`);
+            },
+            err => this.snacker.sendErrorMessage(err)
             );
     }
 
     deleteTicket(ticket: Ticket) {
         this.coreApi.post('/api/ticket/deleteTicket', JSON.stringify(ticket.id))
             .subscribe(
-                () => {
-                    this.getTickets(ticket.raffle.id);
-                    this.snacker.sendSuccessMessage(`Ticket # ${ticket.ticketNumber} successfully deleted`);
+            () => {
+                this.getTickets(ticket.raffle.id);
+                this.snacker.sendSuccessMessage(`Ticket # ${ticket.ticketNumber} successfully deleted`);
+            },
+            err => this.snacker.sendErrorMessage(err)
+            );
+    }
+
+    addTicketIndex(raffleId: number, ticketNumber: number): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            this.coreApi.post<Ticket>('/api/ticket/addTicketIndex/' + raffleId, JSON.stringify(ticketNumber))
+                .subscribe(
+                data => {
+                    this.indexTickets.unshift(data);
+                    resolve(true);
                 },
-                err => this.snacker.sendErrorMessage(err)
-            );
+                err => {
+                    this.snacker.sendErrorMessage(err);
+                    reject(err);
+                });
+        });
     }
 
-    addTicketIndex(raffleId: number, ticketNumber: number) {
-        this.coreApi.post<Ticket>('/api/ticket/addTicketIndex/' + raffleId, JSON.stringify(ticketNumber))
-            .subscribe(
-                data => this.indexTickets.push(data),
-                err => this.snacker.sendErrorMessage(err)
-            );
-    }
-
-    removeTicketIndex(ticket: Ticket) {
-        this.coreApi.post('/api/ticket/removeTicketIndex', JSON.stringify(ticket))
-            .subscribe(
-                () => {
+    removeTicketIndex(ticket: Ticket): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            this.coreApi.post('/api/ticket/removeTicketIndex', JSON.stringify(ticket))
+                .subscribe(
+                () => {                    
                     this.getIndexTickets(ticket.raffle.id);
                     this.snacker.sendSuccessMessage(`Raffle items cleared for entries greater than ${ticket.index}`);
+                    resolve(true);
                 },
-                err => this.snacker.sendErrorMessage(err)
-            );
+                err => {
+                    this.snacker.sendErrorMessage(err);
+                    reject(err);
+                });
+        });
     }
 
     generateRandomTickets(raffleId: number) {

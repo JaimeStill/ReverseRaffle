@@ -42,7 +42,7 @@ namespace ReverseRaffle.Web.Extensions
 
         public static async Task<List<TicketModel>> GetIndexTickets(this AppDbContext db, int raffleId)
         {
-            var tickets = await db.Tickets.SelectIndexTickets(raffleId).ToListAsync();
+            var tickets = await db.Tickets.SelectIndexTickets(raffleId).OrderByDescending(x => x.index).ToListAsync();
             return tickets;
         }
 
@@ -99,6 +99,7 @@ namespace ReverseRaffle.Web.Extensions
             var index = db.Tickets.Max(x => x.Index);
             ticket.Index = index + 1;
             await db.SaveChangesAsync();
+            await db.AddLog(ticket.RaffleId, $"Ticket # {ticket.TicketNumber} added at index {ticket.Index}");
             return ticket.CastToTicket();
         }
 

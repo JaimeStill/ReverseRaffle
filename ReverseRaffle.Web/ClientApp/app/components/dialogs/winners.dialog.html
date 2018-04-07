@@ -1,0 +1,16 @@
+<div class="mat-typography">
+    <h2 mat-dialog-title>Raffle Winners</h2>
+    <mat-dialog-content>
+        <mat-progress-bar *ngIf="service.loadingWinning" mode="indeterminate" color="accent"></mat-progress-bar>
+        <section *ngIf="winners?.length > 0" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="6px">
+            <section *ngFor="let w of winners; let i=index;" class="winner-card contrast-stacked mat-elevation-z5" fxLayout="row" fxLayoutAlign="start center">
+                <h3>{{i + 1}}</h3>
+                <h3 fxFlex>{{w.name}}</h3>
+                <h3>{{w.ticketNumber}}</h3>
+            </section>
+        </section>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+</div>

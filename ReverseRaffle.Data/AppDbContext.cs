@@ -11,6 +11,7 @@ namespace ReverseRaffle.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
+        public DbSet<Log> Logs { get; set; }
         public DbSet<Raffle> Raffles { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
 
@@ -20,6 +21,12 @@ namespace ReverseRaffle.Data
             {
                 modelBuilder.Entity(ent).ToTable(ent.Split('.').Last());
             }
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+            base.OnConfiguring(optionsBuilder);
         }
     }
 }

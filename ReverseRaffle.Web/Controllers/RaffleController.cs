@@ -58,5 +58,8 @@ namespace ReverseRaffle.Web.Controllers
         {
             await db.DeleteRaffle(id);
         }
+
+        [HttpPost("[action]")]
+        public async Task ToggleRaffleComplete([FromBody] int id) => await db.ToggleRaffleComplete(id);
     }
 }

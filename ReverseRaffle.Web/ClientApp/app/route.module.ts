@@ -8,11 +8,13 @@ import { ComponentModule } from './component.module';
 
 import { HomeComponent } from './components/routes/home/home.component';
 import { ManageRaffleComponent } from './components/routes/manage-raffle/manage-raffle.component';
+import { RaffleComponent } from './components/routes/raffle/raffle.component';
 
 const routes: Route[] = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'manage-raffle/:id', component: ManageRaffleComponent },
+    { path: 'raffle/:id', component: RaffleComponent },
     { path: '**', redirectTo: 'home' }
 ]
 
@@ -27,11 +29,13 @@ const routes: Route[] = [
     ],
     declarations: [
         HomeComponent,
-        ManageRaffleComponent
+        ManageRaffleComponent,
+        RaffleComponent
     ],
     exports: [
         HomeComponent,
         ManageRaffleComponent,
+        RaffleComponent,
         MaterialModule,
         PipeModule,
         ComponentModule,
